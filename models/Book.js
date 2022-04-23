@@ -1,0 +1,41 @@
+'use strict';
+const mongoose = require( 'mongoose' );
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
+const Mixed = Schema.Types.Mixed;
+
+var bookSchema = Schema( {
+    _id: String,
+    title: String,
+    isbn: String,
+    pageCount: Number,
+    publishedDate: Date,//might cause issue
+    thumbnailUrl: String,
+    shortDescription: String,
+    longDescription: String,
+    Status: String,
+    authors: Mixed,
+    categories: Mixed
+
+    // limit: Number,
+    // times: Mixed,
+    // enrolled: Number,
+    // details: String,
+    // type: String,
+    // status_text: String,
+    // section: String,
+    // waiting: Number,
+    // instructor: Mixed,
+    // coinstructors: Mixed,
+    // code: Mixed,
+    // subject: String,
+    // coursenum: String,
+    // num: Number,
+    // suffix: String,
+    // name: String,
+    // independent_study: Boolean,
+    // term: Number,
+    // description: String,
+} );
+
+module.exports = mongoose.model( 'Book', bookSchema );
