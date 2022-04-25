@@ -93,18 +93,18 @@ app.use(
 // *********************************************************** //
 
 
-// here is the code which handles all /login /signin /logout routes
-const auth = require('./routes/auth');
-const { deflateSync } = require("zlib");
-app.use(auth)
+// // here is the code which handles all /login /signin /logout routes
+// const auth = require('./routes/auth');
+// const { deflateSync } = require("zlib");
+// app.use(auth)
 
-// middleware to test is the user is logged in, and if not, send them to the login page
-const isLoggedIn = (req,res,next) => {
-  if (res.locals.loggedIn) {
-    next()
-  }
-  else res.redirect('/login')
-}
+// // middleware to test is the user is logged in, and if not, send them to the login page
+// const isLoggedIn = (req,res,next) => {
+//   if (res.locals.loggedIn) {
+//     next()
+//   }
+//   else res.redirect('/login')
+// }
 
 // specify that the server should render the views/index.ejs page for the root path
 // and the index.ejs code will be wrapped in the views/layouts.ejs code which provides
@@ -263,18 +263,31 @@ app.get('/upsertDB',
 )
 
 
-// app.post('/courses/bySubject',
-//   // show list of courses in a given subject
-//   async (req,res,next) => {
-//     const {subject} = req.body;
-//     const books = await Book.find({subject:subject,independent_study:false}).sort({term:1,num:1,section:1})
+app.post('/books/byTitle',
+  // show list of courses in a given subject
+  async (req,res,next) => {
+    const {title} = req.body;
+    const book = await Book.findOne({title:title})
     
-//     res.locals.books = books
-//     res.locals.times2str = times2str
-//     //res.json(courses)
-//     res.render('courselist')
-//   }
-// )
+    res.locals.book = book
+    console.log(books)
+    // res.locals.times2str = times2str
+    //res.json(courses)
+    res.render('courselist')
+  }
+)
+
+app.get('/books/show/:bookID',
+  // show all info about a course given its courseid
+  async (req,res,next) => {
+    const {bookID} = req.params;
+    const book = await Book.findOne({_id:bookID})
+    res.locals.book = book
+
+
+    res.render('course')
+  }
+)
 
 // app.get('/courses/show/:courseId',
 //   // show all info about a course given its courseid

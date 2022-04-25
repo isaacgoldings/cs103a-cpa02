@@ -1,38 +1,27 @@
 <div class="bg-light m-5 p-2 border border-primary border-2">
     <div class="">
         <span>
-            <%= course.subject %> 
-            <%= course.coursenum %> 
-            <%= course.term %> 
+
+            <%= book.authors %> <br>
+
         </span>
-        <strong><%= course.name %></strong>
+        <strong><%= book.title %></strong>
         
     </div>
     <div class="mb-1">
-        <%=course.instructor[0] %>
-        <%=course.instructor[1] %>
-        (<%=course.instructor[2] %>)
+        <%=book.pageCount %> pages <br>
+        isbn: <%=book.isbn%> <br>
+        categories: (<%=book.categories %>) <br>
     </div>
-    <div><a href="/addCourse/<%= course['_id'] %>">(add to schedule)</a></div>
-    <div class="mb-1">
-       Enrollment: <%=course.enrolled %>,
-       Limit: <%=course.limit || 999 %>,
-       Waitlist: <%= course.waiting %>
-       <br>
-       Times: <%= times2str(course.times) %>
-    </div>
-    <div class="">
-        <em><%=course.details %></em>
-    </div>
+
+
+
     <div class="p-3">
-        <%=course.description %>
+        Description: <br> <br>
+        <%=book.longDescription %>
     </div>
 
 </div>
 
 <hr>
 
-<pre>
-    <%= JSON.stringify(course,null,5) %>
-</pre>
--->
