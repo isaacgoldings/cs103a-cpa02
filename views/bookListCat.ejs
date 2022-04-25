@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody></tbody>
-    <% 
+    <% for (book of books) {
         const title = book['title'];
         const authors = book['authors'];
         const description = book['shortDescription'];
@@ -35,10 +35,11 @@
         </td>
 
         <td>
-            ( <%=  book['shortDescription'] %>) 
+            (<%=  book['shortDescription'] %>) 
 
             </a>
         </td>
+    <% } %>
 
 
 

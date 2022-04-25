@@ -245,9 +245,9 @@ app.get('/upsertDB',
       // const num = getNum(coursenum);
       // b.num=num
       // b.suffix = coursenum.slice(num.length)
-      
+      date = "0000-00-00T00:00:00.000-0000"
       if (typeof publishedDate !== "undefined"){
-      const date = publishedDate.$date;
+      date = publishedDate.$date;
       b.publishedDate = date;
       }
       // } else {
@@ -270,7 +270,7 @@ app.post('/books/byTitle',
     const book = await Book.findOne({title:title})
     
     res.locals.book = book
-    console.log(books)
+    console.log(book)
     // res.locals.times2str = times2str
     //res.json(courses)
     res.render('courselist')
@@ -286,6 +286,21 @@ app.get('/books/show/:bookID',
 
 
     res.render('course')
+  }
+)
+
+app.post('/books/byCategory',
+  // show courses taught by a faculty send from a form
+  async (req,res,next) => {
+    console.log(req.body.category);
+    const category = req.body.category;
+    const books = 
+       await Book
+                 .find({categories:category})
+ //              .sort({title:1})
+   console.log(books)
+    res.locals.books = books
+    res.render('bookListCat')
   }
 )
 
