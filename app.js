@@ -35,7 +35,7 @@ const books = require('./public/data/books.json')
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
-const mongodb_URI = 'mongodb+srv://Isaac:compass@goldingscpa02-cluster.12muj.mongodb.net/test'
+const mongodb_URI = process.env.mongodb_URI
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
